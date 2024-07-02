@@ -24,6 +24,7 @@ Below are guidelines for contributing to the devops-security repository hosted o
         - [**Generating Access Keys for AWS CLI**](#generating-access-keys-for-aws-cli)
     - [**Installing Terraform**](#installing-terraform)
     - [**Creating Backend State**](#creating-backend-state)
+    - [**Creating Local tfvars file**](#creating-local-tfvars-file)
     - [**Installing Terraform docs**](#installing-terraform-docs)
     - [**Clone (Create) a copy on your computer**](#clone-create-a-copy-on-your-computer)
     - [**Create a new branch where you will work on your issue**](#create-a-new-branch-where-you-will-work-on-your-issue)
@@ -153,6 +154,23 @@ To facilitate AWS IAM changes using Terraform, it's essential to establish backe
 <sub>[Back to Table of Contents](#table-of-contents)</sub>
 ***
 
+### **Creating Local tfvars file**
+
+Atfer creating a backend state, create a ```backend.tfvars``` file in the ```terraform``` directory. It should have content of this format:
+
+```
+bucket         = "{developer_specific}-hfla-ops-terraform-state"
+key            = "devops-security/terraform.tfstate"
+region         = "us-east-2"
+dynamodb_table = "{developer_specific}_hfla_ops_terraform_table"
+encrypt        = true
+```
+
+Remeber to match these values to the ones in your backend state (and replace {developer-specific} with your actual name)
+
+<sub>[Back to Table of Contents](#table-of-contents)</sub>
+***
+
 ### **Installing Terraform docs**
 
 Follow the Terraform docs [installation guide](https://terraform-docs.io/user-guide/installation/)
@@ -224,7 +242,7 @@ cd terraform
 - Next initilize the terraform configuration
 
 ```bash
-terraform init
+terraform init --backend-config=backend.tfvars
 ```
 
 - Then generate and run an execution plan
