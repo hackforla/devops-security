@@ -4,6 +4,9 @@
 # Ignore variables files
 *.auto.tfvars
 
+# Ignore local development variable file
+backend.tfvars
+
 # Ignore override files
 *.tfoverride
 
