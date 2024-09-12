@@ -173,3 +173,14 @@ module "iam_user_npang4"{
   }
   user_groups = ["read-only-group"]
 }
+
+module "iam_user_mihirmodi"{
+  source = "./modules/aws-users"
+
+  user_name = "mihirmodi"
+  user_tags = {
+    "Project"   ="devops-security"
+    "Access Level" = "1"
+  }
+  user_groups = ["read-only-group"]
+}
