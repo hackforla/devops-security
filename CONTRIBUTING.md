@@ -127,7 +127,7 @@ If you've already completed these steps or you aren't making Terraform changes, 
   ***
 The below steps must be completed in order to authenticate to AWS locally via the command line interface (CLI):
 - [Install AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) 
-- [Set up the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html)
+- [Set up the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-authentication-user.html)
 
 <sub>[Back to Top](#)</sub>
 ***
