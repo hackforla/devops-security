@@ -195,3 +195,14 @@ module "iam_user_lsousadev" {
   }
   user_groups = ["read-only-group"]
 }
+
+module "iam_user_srinipandiyan" {
+source = "./modules/aws-users"
+
+user_name = "srinipandiyan"
+user_tags = {
+  "Project"      = "devops-security"
+  "Access Level" = "1"
+}
+user_groups = ["read-only-group"]
+}

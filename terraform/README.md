@@ -27,6 +27,7 @@ Resources created by this code repository.
 | <a name="module_iam_user_shikha0428"></a> [iam\_user\_shikha0428](#module\_iam\_user\_shikha0428) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_shinjonathan"></a> [iam\_user\_shinjonathan](#module\_iam\_user\_shinjonathan) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_spiteless"></a> [iam\_user\_spiteless](#module\_iam\_user\_spiteless) | ./modules/aws-users | n/a |
+| <a name="module_iam_user_srinipandiyan"></a> [iam\_user\_srinipandiyan](#module\_iam\_user\_srinipandiyan) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_testiamuser"></a> [iam\_user\_testiamuser](#module\_iam\_user\_testiamuser) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_tylerthome"></a> [iam\_user\_tylerthome](#module\_iam\_user\_tylerthome) | ./modules/aws-users | n/a |
 
