@@ -210,7 +210,18 @@ module "iam_user_srinipandiyan" {
 module "iam_user_bltomlin" {
   source = "./modules/aws-users"
 
-  user_name = "bltomlin" # Replace with GitHub handle
+  user_name = "bltomlin"
+  user_tags = {
+    "Project"      = "devops-security"
+    "Access Level" = "1"
+  }
+  user_groups = ["read-only-group"]
+}
+
+module "iam_user_gmgonzal" {
+  source = "./modules/aws-users"
+
+  user_name = "gmgonzal"
   user_tags = {
     "Project"      = "devops-security"
     "Access Level" = "1"
