@@ -21,6 +21,7 @@ As a new member on the HfLA devops-security team, fill in the following fields a
 
 - [ ] Before starting to work on the below instructions, make sure to join the #ops Slack Channel. And are a member of `devops-security` repository.
 - [ ] Self-assign this issue (gear in right side panel).
+- [ ] Select a role label (gear in label section on the right). They begin with "role:". This should be what you want to do in the DevOps CoP
 - [ ] Change the issue status to 'in progress' (right side panel).
 - [ ] Add this issue to the Project Board CoP: DevOps: Project Board - under the Projects section (gear in right side panel).
 - [ ] Attend weekly team meeting, Wednesdays 6-8pm PST.
