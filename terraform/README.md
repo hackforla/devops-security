@@ -11,6 +11,7 @@ Resources created by this code repository.
 | <a name="module_iam_oidc_gha_incubator"></a> [iam\_oidc\_gha\_incubator](#module\_iam\_oidc\_gha\_incubator) | ./modules/aws-gha-oidc-providers | n/a |
 | <a name="module_iam_read_only_group"></a> [iam\_read\_only\_group](#module\_iam\_read\_only\_group) | ./modules/aws-groups | n/a |
 | <a name="module_iam_services_supervisor_group"></a> [iam\_services\_supervisor\_group](#module\_iam\_services\_supervisor\_group) | ./modules/aws-groups | n/a |
+| <a name="module_iam_user_Bwoltz"></a> [iam\_user\_Bwoltz](#module\_iam\_user\_Bwoltz) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_JimmyJuarez10"></a> [iam\_user\_JimmyJuarez10](#module\_iam\_user\_JimmyJuarez10) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_abbyz123"></a> [iam\_user\_abbyz123](#module\_iam\_user\_abbyz123) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_alexe"></a> [iam\_user\_alexe](#module\_iam\_user\_alexe) | ./modules/aws-users | n/a |
