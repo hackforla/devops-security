@@ -1,6 +1,6 @@
 name: 'Request AWS IAM user or service account'
 description: 'Issue for requesting IAM accounts'
-labels: 'feature: AWS user request','size: 1pt','role: missing'
+labels: ['feature: AWS user request','size: 1pt','role: missing']
 
 body: 
     - type: input
