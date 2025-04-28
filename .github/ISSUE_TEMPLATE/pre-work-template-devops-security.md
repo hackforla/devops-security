@@ -42,7 +42,7 @@ As a new member on the HfLA devops-security team, fill in the following fields a
 - [ ] Install Terraform locally by following the instructions of the installation guide mentioned in [Installing Terraform](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#installing-terraform)
 - [ ] Install Terraform Docs locally by following the instructions of the installation guide mentioned in [Installing Terraform docs](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#installing-terraform-docs)
 - [ ] Complete the instructions in [Clone the repository](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#clone-the-repository)
-- [ ] Submit a [new request](https://github.com/hackforla/devops-security/issues/new?assignees=&labels=enhancement&projects=&template=request-aws-iam-resources.yml) to create new AWS user account and then self-assign this issue.
+- [ ] Submit a [new request](https://github.com/hackforla/devops-security/issues/new?assignees=&projects=&template=request-aws-iam-resources.yml) to create new AWS user account and then self-assign this issue.
 - [ ] Create a new branch from main by executing the command
 
     ```bash
