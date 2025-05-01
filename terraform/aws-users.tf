@@ -239,3 +239,14 @@ module "iam_user_Bwoltz" {
   }
   user_groups = ["read-only-group"]
 }
+
+module "iam_user_raibarra" {
+  source = "./modules/aws-users"
+
+  user_name = "raibarra04"
+  user_tags = {
+    "Project"      = "devops-security"
+    "Access Level" = "1"
+  }
+  user_groups = ["read-only-group"]
+}
