@@ -160,7 +160,7 @@ module "iam_user_rsakuma" {
     "Project"      = "devops-security"
     "Access Level" = "1"
   }
-  user_groups = ["read-only-group"]
+  user_groups = ["ops-leads"]
 }
 
 module "iam_user_npang4" {
@@ -189,6 +189,61 @@ module "iam_user_lsousadev" {
   source = "./modules/aws-users"
 
   user_name = "lsousadev"
+  user_tags = {
+    "Project"      = "devops-security"
+    "Access Level" = "1"
+  }
+  user_groups = ["read-only-group"]
+}
+
+module "iam_user_srinipandiyan" {
+  source = "./modules/aws-users"
+
+  user_name = "srinipandiyan"
+  user_tags = {
+    "Project"      = "devops-security"
+    "Access Level" = "1"
+  }
+  user_groups = ["read-only-group"]
+}
+
+module "iam_user_bltomlin" {
+  source = "./modules/aws-users"
+
+  user_name = "bltomlin"
+  user_tags = {
+    "Project"      = "devops-security"
+    "Access Level" = "1"
+  }
+  user_groups = ["read-only-group"]
+}
+
+module "iam_user_gmgonzal" {
+  source = "./modules/aws-users"
+
+  user_name = "gmgonzal"
+  user_tags = {
+    "Project"      = "devops-security"
+    "Access Level" = "1"
+  }
+  user_groups = ["read-only-group"]
+}
+
+module "iam_user_Bwoltz" {
+  source = "./modules/aws-users"
+
+  user_name = "Bwoltz"
+  user_tags = {
+    "Project"      = "devops-security"
+    "Access Level" = "1"
+  }
+  user_groups = ["read-only-group"]
+}
+
+module "iam_user_raibarra" {
+  source = "./modules/aws-users"
+
+  user_name = "raibarra04"
   user_tags = {
     "Project"      = "devops-security"
     "Access Level" = "1"

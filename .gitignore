@@ -6,6 +6,7 @@
 
 # Ignore local development variable file
 backend.tfvars
+terraform.tfstate
 
 # Ignore override files
 *.tfoverride
@@ -19,3 +20,6 @@ terraform.rc
 
 # Ignore metadata files
 *.tfstate.lock.info
+
+# Ignore lock file
+*.terraform.lock.hcl

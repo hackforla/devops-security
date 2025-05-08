@@ -8,28 +8,18 @@ Below are guidelines for contributing to the devops-security repository hosted o
 **The team recommends using [VS Code](https://code.visualstudio.com/download) as the preferred text editor for working on code, but feel free to utilize a text editor of your preference.**
 
 **If you have any additional questions about your contribution process, please feel free to reach out to the team in the [#ops](https://hackforla.slack.com/archives/CV7QGL66B) Slack channel.**
-<br><br>
 
-## **Table of Contents**
-- [**How to Contribute to DevOps**](#how-to-contribute-to-devops)
-- [**Table of Contents**](#table-of-contents)
-- [**Setting up the local development environment**](#setting-up-the-local-development-environment)
-    - [**Creating a personal AWS account**](#creating-a-personal-aws-account)
-    - [**Login as root user & setup MFA**](#login-as-root-user-&-setup-mfa)
-    - [**Setting up IAM and AWS CLI**](#setting-up-iam-and-aws-cli)
-        - [**Create an IAM User**](#create-an-iam-user)
-        - [**Create an IAM Group**](#create-an-iam-group)
-        - [**Attach IAM user to IAM group**](#attach-iam-user-to-iam-group)
-        - [**Attach `AdministratorAccess` policy to IAM group**](#attach-administratoraccess-policy-to-iam-group)
-        - [**Generating Access Keys for AWS CLI**](#generating-access-keys-for-aws-cli)
-    - [**Installing Terraform**](#installing-terraform)
-    - [**Creating Backend State**](#creating-backend-state)
-    - [**Installing Terraform docs**](#installing-terraform-docs)
-    - [**Clone (Create) a copy on your computer**](#clone-create-a-copy-on-your-computer)
-    - [**Create a new branch where you will work on your issue**](#create-a-new-branch-where-you-will-work-on-your-issue)
-    - [**Creating Local tfvars file**](#creating-local-tfvars-file)
-    - [**Terraform Setup and Execution Instructions**](#terraform-setup-and-execution-instructions)
-    - [**Submitting changes via git and opening a PR**](#submitting-changes-via-git-and-opening-a-pr)
+### Overview
+
+- [Setting up the local development environment](#setting-up-the-local-development-environment)
+  - AWS identity and access management
+  - AWS CLI
+  - Terraform
+- [Submitting changes via git and opening a PR](#submitting-changes-via-git-and-opening-a-pr)
+
+### Table of Contents
+
+A generated table of contents is available on GitHub by [opening the outline icon](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#headings) at the top of the markdown preview window.
 
 ## **Setting up the local development environment**
 The below instructions will walk you through setting up your own AWS account for local development and testing before pushing changes that will effect our infrastructure. 
@@ -44,7 +34,7 @@ If you've already completed these steps or you aren't making Terraform changes, 
 - Agree to the AWS Customer Agreement and Service Terms, complete the registration by clicking `"Create Account and Continue"`, verify your phone number via text or call, confirm your email address following the instructions in the confirmation email, and finally sign in to access your new AWS account using your email and password.
 - Follow this [video guide](https://youtu.be/CjKhQoYeR4Q?si=78GhlDLV5zZu8qwh) for deeper explanations.
 
-<sub>[Back to Table of Contents](#table-of-contents)</sub>
+<sub>[Back to Top](#)</sub>
 ***
 
 ### **Login as root user & setup MFA**
@@ -57,7 +47,7 @@ If you've already completed these steps or you aren't making Terraform changes, 
 
 **Note:** Select the `us-west-2` region. It's not required for managing IAM resources, as they are global. However, it's advisable since our other resources are in the same region.
 
-<sub>[Back to Table of Contents](#table-of-contents)</sub>
+<sub>[Back to Top](#)</sub>
 ***
 
 ## **Setting up IAM and AWS CLI**
@@ -86,7 +76,7 @@ If you've already completed these steps or you aren't making Terraform changes, 
   ```
   **Note:** Password length must be 20 characters
 
-  <sub>[Back to Table of Contents](#table-of-contents)</sub>
+  <sub>[Back to Top](#)</sub>
   ***
 - ### **Create an IAM Group**
 
@@ -95,7 +85,7 @@ If you've already completed these steps or you aren't making Terraform changes, 
   ```bash
   aws iam create-group --group-name AdminGroup
   ```
-  <sub>[Back to Table of Contents](#table-of-contents)</sub>
+  <sub>[Back to Top](#)</sub>
   ***
 - ### **Attach IAM user to IAM group**
   
@@ -109,7 +99,7 @@ If you've already completed these steps or you aren't making Terraform changes, 
   ```bash
   aws iam add-user-to-group --group-name AdminGroup --user-name octocat
   ```
-  <sub>[Back to Table of Contents](#table-of-contents)</sub>
+  <sub>[Back to Top](#)</sub>
   ***
 - ### **Attach `AdministratorAccess` policy to IAM group**
 
@@ -118,7 +108,7 @@ If you've already completed these steps or you aren't making Terraform changes, 
   ```bash
   aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AdministratorAccess --group-name AdminGroup
   ```
-  <sub>[Back to Table of Contents](#table-of-contents)</sub>
+  <sub>[Back to Top](#)</sub>
   ***
 - Log in as the newly created user instead of continuing to log in as the root user.
 - ### **Generating Access Keys for AWS CLI**
@@ -133,13 +123,13 @@ If you've already completed these steps or you aren't making Terraform changes, 
     ```bash
     nano access_key.json
     ```
-  <sub>[Back to Table of Contents](#table-of-contents)</sub>
+  <sub>[Back to Top](#)</sub>
   ***
 The below steps must be completed in order to authenticate to AWS locally via the command line interface (CLI):
 - [Install AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) 
-- [Set up the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html)
+- [Set up the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-authentication-user.html)
 
-<sub>[Back to Table of Contents](#table-of-contents)</sub>
+<sub>[Back to Top](#)</sub>
 ***
 
 ### **Creating Backend State**
@@ -189,21 +179,21 @@ aws dynamodb create-table \
     --billing-mode PAY_PER_REQUEST
 ```
 
-<sub>[Back to Table of Contents](#table-of-contents)</sub>
+<sub>[Back to Top](#)</sub>
 ***
 
 ### **Installing Terraform**
 
 Use the [Official HashiCorp install instructions](https://developer.hashicorp.com/terraform/install) for installing terraform.
 
-<sub>[Back to Table of Contents](#table-of-contents)</sub>
+<sub>[Back to Top](#)</sub>
 ***
 
 ### **Installing Terraform docs**
 
 Follow the Terraform docs [installation guide](https://terraform-docs.io/user-guide/installation/)
 
-<sub>[Back to Table of Contents](#table-of-contents)</sub>
+<sub>[Back to Top](#)</sub>
 ***
 
 ## **Clone the repository**
@@ -230,7 +220,7 @@ You should now have a new folder in your `hackforla` folder called `devops-secur
 cd devops-security
 ```
 
-<sub>[Back to Table of Contents](#table-of-contents)</sub>
+<sub>[Back to Top](#)</sub>
 ***
 
 ### **Create a new branch where you will work on your issue**
@@ -256,7 +246,7 @@ git checkout -b update-contributing-guide-15
 
 When you've finished working on your issue, follow the steps below to prepare your changes to push to your repository.
 
-<sub>[Back to Table of Contents](#table-of-contents)</sub>
+<sub>[Back to Top](#)</sub>
 ***
 
 ### **Creating Local tfvars file**
@@ -266,14 +256,14 @@ After creating a backend state, create a `backend.tfvars` file in the `terraform
 ```terraform
 bucket         = "USERNAME-hfla-ops-terraform-state"
 key            = "devops-security/terraform.tfstate"
-region         = "us-east-2"
+region         = "us-west-2"
 dynamodb_table = "hfla_ops_terraform_table"
 encrypt        = true
 ```
 
 Remember to match these values to the ones in your backend state (and replace USERNAME with your username)
 
-<sub>[Back to Table of Contents](#table-of-contents)</sub>
+<sub>[Back to Top](#)</sub>
 ***
 
 ### **Terraform Setup and Execution Instructions**
@@ -307,7 +297,7 @@ terraform apply
 terraform destroy
 ```
 
-<sub>[Back to Table of Contents](#table-of-contents)</sub>
+<sub>[Back to Top](#)</sub>
 ***
 
 ### Generate Terraform Docs
@@ -321,7 +311,7 @@ cd terraform # or other directory
 terraform-docs -c .terraform.docs.yml .
 ```
 
-<sub>[Back to Table of Contents](#table-of-contents)</sub>
+<sub>[Back to Top](#)</sub>
 ***
 
 ### **Submitting changes via git and opening a PR**
@@ -346,5 +336,5 @@ git add terraform/aws-users.tf
   ```
 - Lastly open a PR to merge your changes into the `main` branch.
 
-<sub>[Back to Table of Contents](#table-of-contents)</sub>
+<sub>[Back to Top](#)</sub>
 ***

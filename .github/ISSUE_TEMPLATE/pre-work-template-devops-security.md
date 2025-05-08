@@ -2,8 +2,7 @@
 name: Pre-work Template - DevOps-Security
 about: Newly onboarded team members should start by making this issue for themselves
 title: 'Pre-work Checklist: DevOps-Security-Member: [replace brackets with your name]'
-labels: 'Complexity: Prework, Feature: Onboarding/Contributing.md, role missing, size:
-  1pt'
+labels: 'Complexity: Prework, Feature: Onboarding/Contributing.md, size: 1pt'
 assignees: ''
 
 ---
@@ -22,6 +21,8 @@ As a new member on the HfLA devops-security team, fill in the following fields a
 
 - [ ] Before starting to work on the below instructions, make sure to join the #ops Slack Channel. And are a member of `devops-security` repository.
 - [ ] Self-assign this issue (gear in right side panel).
+- [ ] Select a role label (gear in label section on the right). They begin with "role:". This should be what you want to do in the DevOps CoP
+- [ ] Change the issue status to 'in progress' (right side panel).
 - [ ] Add this issue to the Project Board CoP: DevOps: Project Board - under the Projects section (gear in right side panel).
 - [ ] Attend weekly team meeting, Wednesdays 6-8pm PST.
   - [ ] Note: There are no meetings on the 1st Wednesday of every month.
@@ -41,7 +42,7 @@ As a new member on the HfLA devops-security team, fill in the following fields a
 - [ ] Install Terraform locally by following the instructions of the installation guide mentioned in [Installing Terraform](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#installing-terraform)
 - [ ] Install Terraform Docs locally by following the instructions of the installation guide mentioned in [Installing Terraform docs](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#installing-terraform-docs)
 - [ ] Complete the instructions in [Clone the repository](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#clone-the-repository)
-- [ ] Submit a [new request](https://github.com/hackforla/devops-security/issues/new?assignees=&labels=enhancement&projects=&template=request-aws-iam-resources.yml) to create new AWS user account and then self-assign this issue.
+- [ ] Submit a [new request](https://github.com/hackforla/devops-security/issues/new?assignees=&projects=&template=request-aws-iam-resources.yml) to create new AWS user account and then self-assign this issue.
 - [ ] Create a new branch from main by executing the command
 
     ```bash
@@ -53,14 +54,14 @@ As a new member on the HfLA devops-security team, fill in the following fields a
     ```bash
     # Replace USERNAME with your GitHub handle
     module "iam_user_USERNAME" {
-    source = "./modules/aws-users"
+      source = "./modules/aws-users"
 
-    user_name = "USERNAME" # Replace with GitHub handle
-    user_tags = {
-      "Project"      = "devops-security"
-      "Access Level" = "1"
-    }
-    user_groups = ["read-only-group"]
+      user_name = "USERNAME" # Replace with GitHub handle
+      user_tags = {
+        "Project"      = "devops-security"
+        "Access Level" = "1"
+      }
+      user_groups = ["read-only-group"]
     }
 
     ```
