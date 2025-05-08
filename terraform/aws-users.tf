@@ -250,3 +250,14 @@ module "iam_user_raibarra" {
   }
   user_groups = ["read-only-group"]
 }
+
+module "iam_user_herehfla" {
+  source = "./modules/aws-users"
+
+  user_name = "herehfla" # Replace with GitHub handle
+  user_tags = {
+    "Project"      = "devops-security"
+    "Access Level" = "1"
+  }
+  user_groups = ["read-only-group"]
+}
