@@ -5,7 +5,8 @@ module "iam_read_only_group" {
   group_name = "read-only-group"
   policy_arn = {
     "ReadOnlyAccess"        = "arn:aws:iam::aws:policy/ReadOnlyAccess",
-    "IAMUserChangePassword" = "arn:aws:iam::aws:policy/IAMUserChangePassword"
+    "IAMUserChangePassword" = "arn:aws:iam::aws:policy/IAMUserChangePassword",
+    "EnforceMFAForUsers"    = module.aws_custom_policies.policy_arns["EnforceMFAForUsers"]
   }
 }
 
@@ -15,7 +16,8 @@ module "iam_services_supervisor_group" {
 
   group_name = "iam-services-supervisor-group"
   policy_arn = {
-    "IAMServicesSupervisor" = module.aws_custom_policies.policy_arns["IAMServicesSupervisor"]
+    "IAMServicesSupervisor" = module.aws_custom_policies.policy_arns["IAMServicesSupervisor"],
+    "EnforceMFAForUsers"    = module.aws_custom_policies.policy_arns["EnforceMFAForUsers"]
   }
 }
 
