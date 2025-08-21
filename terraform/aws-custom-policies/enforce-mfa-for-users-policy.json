@@ -20,6 +20,25 @@
                   "aws:MultiFactorAuthPresent": "false"
               }
           }
-      }
+      },
+      {
+            "Sid": "AllowManageOwnVirtualMFADevice",
+            "Effect": "Allow",
+            "Action": [
+                "iam:CreateVirtualMFADevice"
+            ],
+            "Resource": "arn:aws:iam::*:mfa/*"
+        },
+        {
+            "Sid": "AllowManageOwnUserMFA",
+            "Effect": "Allow",
+            "Action": [
+                "iam:DeactivateMFADevice",
+                "iam:EnableMFADevice",
+                "iam:ListMFADevices",
+                "iam:ResyncMFADevice"
+            ],
+            "Resource": "arn:aws:iam::*:user/${aws:username}"
+        }
   ]
 }
