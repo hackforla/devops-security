@@ -20,6 +20,7 @@ Resources created by this code repository.
 | <a name="module_iam_user_brittanyms"></a> [iam\_user\_brittanyms](#module\_iam\_user\_brittanyms) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_chelseyb"></a> [iam\_user\_chelseyb](#module\_iam\_user\_chelseyb) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_drakeredwind01"></a> [iam\_user\_drakeredwind01](#module\_iam\_user\_drakeredwind01) | ./modules/aws-users | n/a |
+| <a name="module_iam_user_ezesalvatore4"></a> [iam\_user\_ezesalvatore4](#module\_iam\_user\_ezesalvatore4) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_freaky4wrld"></a> [iam\_user\_freaky4wrld](#module\_iam\_user\_freaky4wrld) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_gmgonzal"></a> [iam\_user\_gmgonzal](#module\_iam\_user\_gmgonzal) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_here"></a> [iam\_user\_here](#module\_iam\_user\_here) | ./modules/aws-users | n/a |
