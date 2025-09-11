@@ -4,7 +4,7 @@ about: 'Standard HackforLA issue template '
 title: ''
 labels: 'size: missing, role: missing, feature: missing'
 assignees: ''
-
+projects: ["@ezesalvatore's untitled project"]
 
 ---
 
