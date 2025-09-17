@@ -6,7 +6,6 @@ title: 'DR: [NAME OF DECISION RECORD]'
 labels: 'complexity: missing, feature: missing, missing: milestone, role: missing,
   size: missing'
 assignees: ''
-
 ---
 
 ### Overview
