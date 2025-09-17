@@ -2,7 +2,7 @@
 name: Pre-work Template - DevOps-Security
 about: Newly onboarded team members should start by making this issue for themselves
 title: 'Pre-work Checklist: DevOps-Security-Member: [replace brackets with your name]'
-labels: 'Complexity: Prework, Feature: Onboarding/Contributing.md, size: 1pt'
+labels: 'complexity: Prework, feature: Onboarding/Contributing.md, size: 1pt, role: missing'
 assignees: ''
 
 ---
