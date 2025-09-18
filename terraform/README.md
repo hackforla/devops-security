@@ -26,6 +26,7 @@ Resources created by this code repository.
 | <a name="module_iam_user_here"></a> [iam\_user\_here](#module\_iam\_user\_here) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_jbubar"></a> [iam\_user\_jbubar](#module\_iam\_user\_jbubar) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_lsousadev"></a> [iam\_user\_lsousadev](#module\_iam\_user\_lsousadev) | ./modules/aws-users | n/a |
+| <a name="module_iam_user_myronchen-git"></a> [iam\_user\_myronchen-git](#module\_iam\_user\_myronchen-git) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_npang4"></a> [iam\_user\_npang4](#module\_iam\_user\_npang4) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_raibarra"></a> [iam\_user\_raibarra](#module\_iam\_user\_raibarra) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_rsakuma"></a> [iam\_user\_rsakuma](#module\_iam\_user\_rsakuma) | ./modules/aws-users | n/a |
