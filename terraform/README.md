@@ -16,6 +16,7 @@ Resources created by this code repository.
 | <a name="module_iam_user_abbyz123"></a> [iam\_user\_abbyz123](#module\_iam\_user\_abbyz123) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_alexe"></a> [iam\_user\_alexe](#module\_iam\_user\_alexe) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_awlFCCamp"></a> [iam\_user\_awlFCCamp](#module\_iam\_user\_awlFCCamp) | ./modules/aws-users | n/a |
+| <a name="module_iam_user_benettonkkb"></a> [iam\_user\_benettonkkb](#module\_iam\_user\_benettonkkb) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_bltomlin"></a> [iam\_user\_bltomlin](#module\_iam\_user\_bltomlin) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_brittanyms"></a> [iam\_user\_brittanyms](#module\_iam\_user\_brittanyms) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_chelseyb"></a> [iam\_user\_chelseyb](#module\_iam\_user\_chelseyb) | ./modules/aws-users | n/a |
