@@ -143,6 +143,17 @@ module "iam_user_ezesalvatore4" {
   user_groups = ["read-only-group"]
 }
 
+module "iam_user_myronchen-git" {
+  source = "./modules/aws-users"
+
+  user_name = "myronchen-git"
+  user_tags = {
+    "Project"      = "devops-security"
+    "Access Level" = "1"
+  }
+  user_groups = ["read-only-group"]
+}
+
 module "iam_user_here" {
   source = "./modules/aws-users"
 
