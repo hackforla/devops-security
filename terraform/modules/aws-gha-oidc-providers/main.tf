@@ -61,17 +61,12 @@ resource "aws_iam_role" "github_actions_oidc" {
         "Federated" : "arn:aws:iam::${data.aws_caller_identity.current.account_id}:oidc-provider/${local.oidc_github_idp}"
       },
       "Action" : "sts:AssumeRoleWithWebIdentity",
-      "Condition" : var.use_wildcard ? {
+      "Condition" : {
         "StringLike" : {
-          "token.actions.githubusercontent.com:sub" : local.oidc_gha_sub
+          "token.actions.githubusercontent.com:sub" : [local.oidc_gha_sub, "repo:${var.github_repo}:pull_request"]
         },
         "StringEquals" : {
           "token.actions.githubusercontent.com:aud" : local.oidc_aws_audience,
-        }
-        } : {
-        "StringEquals" : {
-          "token.actions.githubusercontent.com:aud" : local.oidc_aws_audience,
-          "token.actions.githubusercontent.com:sub" : local.oidc_gha_sub
         }
       }
     }]
