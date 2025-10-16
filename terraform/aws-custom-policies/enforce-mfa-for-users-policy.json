@@ -12,6 +12,8 @@
               "iam:ListMFADevices",
               "iam:ListVirtualMFADevices",
               "iam:ResyncMFADevice",
+              "iam:ChangePassword",
+              "iam:GetAccountPasswordPolicy",
               "sts:GetSessionToken"
           ],
           "Resource": "*",
