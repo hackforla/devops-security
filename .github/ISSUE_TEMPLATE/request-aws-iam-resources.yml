@@ -1,7 +1,7 @@
 name: 'Request AWS IAM user or service account'
 description: 'Issue for requesting IAM accounts'
-labels: ['feature: AWS user request','size: 1pt','role: missing', 'complexity: missing']
-projects: ['CoP: DevOps: Project Board']
+labels: ['feature: AWS user request','size: 1pt','role: DevOps engineer', 'complexity: small']
+projects: ['hackforla/73']
 
 body: 
     - type: input
