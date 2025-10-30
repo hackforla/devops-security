@@ -164,6 +164,7 @@ module "iam_user_here" {
   }
   user_groups = ["read-only-group"]
 }
+
 module "iam_user_benettonkkb" {
   source = "./modules/aws-users"
 
@@ -174,3 +175,15 @@ module "iam_user_benettonkkb" {
   }
   user_groups = ["read-only-group"]
 }
+
+module "iam_user_Ganeshswaminathan1912" {
+  source = "./modules/aws-users"
+
+  user_name = "Ganeshswaminathan1912"
+  user_tags = {
+    "Project"      = "vrms"
+    "Access Level" = "1"
+  }
+  user_groups = ["read-only-group"]
+}
+
