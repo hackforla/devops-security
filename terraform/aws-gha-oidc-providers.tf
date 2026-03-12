@@ -62,8 +62,7 @@ resource "aws_iam_role" "incubator_tf_apply" {
           }
           StringLike = {
             "token.actions.githubusercontent.com:sub" = [
-              "repo:hackforla/incubator:ref:refs/heads/main",
-              "repo:hackforla/incubator:pull_request"
+              "repo:hackforla/incubator:ref:refs/heads/main"
             ]
           }
         }
