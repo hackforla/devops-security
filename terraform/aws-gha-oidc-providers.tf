@@ -40,13 +40,17 @@ resource "aws_iam_role" "incubator_tf_plan" {
 }
 
 resource "aws_iam_role_policy_attachment" "incubator_tf_plan_readonly" {
-  role      = aws_iam_role.incubator_tf_plan.name
+  role       = aws_iam_role.incubator_tf_plan.name
   policy_arn = "arn:aws:iam::aws:policy/ReadOnlyAccess"
+}
+
+resource "aws_iam_role_policy_attachment" "incubator_tf_plan_secrets_read" {
+  role       = aws_iam_role.incubator_tf_plan.name
+  policy_arn = module.aws_custom_policies.policy_arns["IncubatorTfPlanSecretsRead"]
 }
 
 resource "aws_iam_role" "incubator_tf_apply" {
   name = "incubator-tf-apply"
-
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
