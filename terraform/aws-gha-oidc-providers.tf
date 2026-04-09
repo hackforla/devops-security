@@ -11,6 +11,7 @@ module "iam_oidc_gha_incubator" {
   ]
 
 }
+
 resource "aws_iam_role" "incubator_tf_plan" {
   name = "incubator-tf-plan"
 
@@ -51,6 +52,7 @@ resource "aws_iam_role_policy_attachment" "incubator_tf_plan_secrets_read" {
 
 resource "aws_iam_role" "incubator_tf_apply" {
   name = "incubator-tf-apply"
+
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -79,4 +81,3 @@ resource "aws_iam_role_policy_attachment" "incubator_tf_apply_admin" {
   role       = aws_iam_role.incubator_tf_apply.name
   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 }
-
