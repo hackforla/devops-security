@@ -29,7 +29,7 @@ module "iam_user_chelseyb" {
     "Project"      = "devops-security"
     "Access Level" = "1"
   }
-  user_groups = ["read-only-group", "iam-services-supervisor-group"]
+  user_groups = ["read-only-group"]
 }
 
 
@@ -135,7 +135,7 @@ module "iam_user_raibarra" {
 module "iam_user_ezesalvatore4" {
   source = "./modules/aws-users"
 
-  user_name = "ezesalvatore" 
+  user_name = "ezesalvatore"
   user_tags = {
     "Project"      = "devops-security"
     "Access Level" = "1"
