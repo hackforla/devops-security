@@ -11,7 +11,7 @@ module "aws_custom_policies" {
     }
     "IncubatorTfPlanSecretsRead" = {
       description = "Allows incubator tf plan role to read specific Secrets Manager secrets needed for terraform plan"
-      filename    = "incubator-tf-plan-secrets-read-policy.json"
+      filename    = "tf-plan-scoped.json"
     }
   }
 }

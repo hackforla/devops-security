@@ -50,8 +50,7 @@ resource "aws_iam_openid_connect_provider" "github_actions" {
 
 resource "aws_iam_role" "github_actions_oidc" {
 
-  name                = var.role_name
-  managed_policy_arns = var.policy_arns
+  name = var.role_name
 
   assume_role_policy = jsonencode({
     "Version" : "2012-10-17",
@@ -71,4 +70,11 @@ resource "aws_iam_role" "github_actions_oidc" {
       }
     }]
   })
+}
+
+resource "aws_iam_role_policy_attachment" "github_actions_oidc" {
+  for_each = toset(var.policy_arns)
+
+  role       = aws_iam_role.github_actions_oidc.name
+  policy_arn = each.value
 }
