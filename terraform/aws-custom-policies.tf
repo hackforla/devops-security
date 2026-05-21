@@ -9,5 +9,9 @@ module "aws_custom_policies" {
       description = "Policy enforcing MFA for devops security users"
       filename    = "enforce-mfa-for-users-policy.json"
     }
+    "IncubatorTfPlanSecretsRead" = {
+      description = "Allows incubator tf plan role to read specific Secrets Manager secrets needed for terraform plan"
+      filename    = "tf-plan-scoped.json"
+    }
   }
 }
