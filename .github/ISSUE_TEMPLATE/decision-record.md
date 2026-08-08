@@ -23,8 +23,8 @@ We need to document what our [NAME OF DECISION RECORD] requirements are, so that
 - [ ] Create an issue to write code and implement policy
 
 ### Resources/Instructions
-- 1.01 https://github.com/hackforla/ops/wiki/Decision-Records
-- 1.02 https://github.com/hackforla/ops/wiki/Decision-Records-on-Solutions-Adopted
+- 1.01 https://github.com/hackforla/devops/wiki/Decision-Records
+- 1.02 https://github.com/hackforla/devops/wiki/Decision-Records-on-Solutions-Adopted
 
 Template for decision record
 ```
