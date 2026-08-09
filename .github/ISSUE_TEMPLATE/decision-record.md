@@ -3,7 +3,7 @@ name: Decision Record
 about: Research, Recommend, Write Decision Record, Get Sign Off, and Create Implementation
   Issue
 title: 'DR: [NAME OF DECISION RECORD]'
-labels: 'complexity: missing, feature: missing, missing: milestone, role: missing,
+labels: 'complexity: missing, feature: missing, milestone: missing, role: missing,
   size: missing'
 assignees: ''
 ---

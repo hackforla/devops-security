@@ -1,6 +1,6 @@
 name: 'Blank Issue Form with Dependency'
 description: 'Standard HackforLA issue form with dependency'
-labels: ['size: missing', 'role: missing', 'feature: missing', 'complexity: missing', 'Draft']
+labels: ['size: missing', 'role: missing', 'feature: missing', 'complexity: missing', 'milestone: missing', 'dependency', 'draft']
 projects: ['CoP: DevOps: Project Board']
 body:
   - type: textarea
