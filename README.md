@@ -16,7 +16,7 @@ DevOps Security is a code repository used to maintain Hack for L.A.'s AWS Identi
 
 # Contact info
 
-This repo is maintained by the DevOps team. Reach out to our [CoP leads](https://github.com/hackforla/devops/wiki/Community#ops-community-of-practice-cop-leads) on Slack with questions or attend a [community meeting](https://github.com/hackforla/devops/wiki/CoP-Meetings)
+This repo is maintained by the DevOps team. Reach out to our [CoP leads](https://github.com/hackforla/devops/wiki/Community#devops-community-of-practice-cop-leads) on Slack with questions or attend a [community meeting](https://github.com/hackforla/devops/wiki/CoP-Meetings)
 
 
 ### Licensing

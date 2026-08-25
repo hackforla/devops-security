@@ -1,5 +1,4 @@
 # **How to Contribute to DevOps Security**
-> ℹ️ **This page is under development**
 
 Below are guidelines for contributing to the devops-security repository hosted on GitHub. These guidelines are primarily recommendations rather than strict rules. Use your discretion and feel free to suggest changes to this document by submitting a pull request.
 
@@ -8,14 +7,6 @@ Below are guidelines for contributing to the devops-security repository hosted o
 **The team recommends using [VS Code](https://code.visualstudio.com/download) as the preferred text editor for working on code, but feel free to utilize a text editor of your preference.**
 
 **If you have any additional questions about your contribution process, please feel free to reach out to the team in the [#ops](https://hackforla.slack.com/archives/CV7QGL66B) Slack channel.**
-
-### Overview
-
-- [Setting up the local development environment](#setting-up-the-local-development-environment)
-  - AWS identity and access management
-  - AWS CLI
-  - Terraform
-- [Submitting changes via git and opening a PR](#submitting-changes-via-git-and-opening-a-pr)
 
 ### Table of Contents
 
