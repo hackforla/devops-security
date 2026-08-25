@@ -18,20 +18,23 @@ We need to document what our [NAME OF DECISION RECORD] requirements are, so that
 - [ ] Write Decision record
 - [ ] Get approval
 - [ ] Add Decision Record to wiki in the appropriate places
-   - [ ] List under "Link to all the decision records" (resource 1.01)
-   - [ ] List under "Records" (resource 1.02)
+   - [ ] Create a wiki page for the record itself, named `DR-[NAME OF DECISION RECORD]`, using the template below. **Do not put a colon in the page name** — the reason is explained under "Instructions" on resource 1.02.
+   - [ ] List the new page under "Link to all the decision records" (resource 1.01)
+   - [ ] List the new page under "Records" — on resource 1.02 if the solution was adopted, or resource 1.03 if it was not
 - [ ] Create an issue to write code and implement policy
 
 ### Resources/Instructions
 - 1.01 https://github.com/hackforla/devops/wiki/Decision-Records
 - 1.02 https://github.com/hackforla/devops/wiki/Decision-Records-on-Solutions-Adopted
+- 1.03 https://github.com/hackforla/devops/wiki/Decision-Records-on-Solutions-Not-Implemented
 
 Template for decision record
 ```
-This is a record in the [Decision Records on Solutions Adopted](https://github.com/hackforla/website/wiki/Decision-Records-on-Solutions-Adopted).
+This is a record in the [Decision Records on Solutions Adopted](https://github.com/hackforla/devops/wiki/Decision-Records-on-Solutions-Adopted).
 
-#### Issue 
-#### Problem Statement
-#### Potential Solution
-#### Feasibility Determination
+### Issue
+### Problem Statement
+### Potential Solution
+### Feasibility Determination
+### Summary
 ```
