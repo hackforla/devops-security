@@ -33,3 +33,4 @@ jobs:
       with:
         path: terraform
         backend_config_file: terraform/prod.backend.tfvars
+        auto_approve: true
