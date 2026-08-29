@@ -1,4 +1,9 @@
 terraform {
+  // Pins major and minor; patch releases are still picked up. Without this the
+  // dflook plan/apply actions take whatever the latest Terraform release is, so
+  // CI silently upgraded itself -- state has been written by 1.7 through 1.16.
+  // This line alone chooses the CI Terraform version.
+  required_version = "~> 1.16.0"
   backend "s3" {
   }
 }
