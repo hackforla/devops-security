@@ -4,6 +4,12 @@ resource "aws_iam_user" "user" {
   name = var.user_name
   path = var.user_path
 
+  // Offboarding is done by deleting the module block, so a destroy has to be
+  // able to finish on its own. Without this, DeleteUser returns DeleteConflict
+  // for any user who still has an MFA device, an access key or a directly
+  // attached policy, and the apply fails partway through the batch.
+  force_destroy = true
+
   tags = var.user_tags
 }
 
