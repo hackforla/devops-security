@@ -15,6 +15,7 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     permissions:
+      id-token: write
       contents: read
       pull-requests: write
 
@@ -24,9 +25,9 @@ jobs:
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-west-2 
+        role-to-assume: arn:aws:iam::035866691871:role/devops-security-tf-plan
+        role-session-name: devopssecuritytfplan
+        aws-region: us-west-2
 
     - name: Terraform Plan
       uses: dflook/terraform-plan@v1
