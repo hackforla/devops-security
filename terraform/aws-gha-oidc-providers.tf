@@ -12,6 +12,14 @@
 // hackforla/devops-security#182.
 //
 // Do not "fix" their absence by adding them below.
+//
+// The apply role's sub condition is refs/heads/main ONLY, and that narrowness is
+// load-bearing beyond the obvious. terraform-apply.yaml has a workflow_dispatch
+// trigger whose runs are auto-approved -- the one path that applies without a
+// reviewed plan -- and a dispatch on any other branch presents a different sub,
+// so AWS refuses the AssumeRole outright. Widening this to refs/heads/* would
+// silently turn that recovery trigger into an unreviewed apply from any branch.
+// See hackforla/devops-security#187.
 
 module "iam_oidc_gha_incubator" {
   source = "./modules/aws-gha-oidc-providers"
