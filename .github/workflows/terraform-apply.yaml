@@ -6,6 +6,10 @@ on:
       - main  # or any other branch you want to trigger the deployment
     paths: 
       - '**/*.tf'
+  # Recovery path for the approval gate below. When a merge-triggered apply fails
+  # with plan-changed, re-running it from the Actions tab replays the same push
+  # event and fails identically, so a manual trigger is the only way back.
+  workflow_dispatch:
 
 jobs:
   terraform-apply:
@@ -34,4 +38,4 @@ jobs:
       with:
         path: terraform
         backend_config_file: terraform/prod.backend.tfvars
-        auto_approve: true
+        auto_approve: ${{ github.event_name == 'workflow_dispatch' }}
