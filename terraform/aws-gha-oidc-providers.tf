@@ -1,3 +1,18 @@
+// This file declares the OIDC roles used by hackforla/incubator CI. The two
+// roles used by THIS repo's CI -- devops-security-tf-plan and
+// devops-security-tf-apply -- are deliberately NOT here. They were created by
+// hand in account 035866691871 on 2026-09-05 and are tagged managed-by=exempt,
+// which is what keeps them out of the AWS/Terraform coverage report rather than
+// showing up as unmanaged.
+//
+// The reason is a bootstrap problem, not an oversight. The workflow that would
+// run the Terraform creating these roles is the same workflow that has to assume
+// them to authenticate, so they cannot exist before the first run that needs
+// them. Declaring them here would reintroduce that circularity. See
+// hackforla/devops-security#182.
+//
+// Do not "fix" their absence by adding them below.
+
 module "iam_oidc_gha_incubator" {
   source = "./modules/aws-gha-oidc-providers"
 
