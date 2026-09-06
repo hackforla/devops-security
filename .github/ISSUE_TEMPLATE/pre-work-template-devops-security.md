@@ -24,8 +24,7 @@ As a new member on the HfLA devops-security team, fill in the following fields a
 - [ ] Select a role label (gear in label section on the right). They begin with "role:". This should be what you want to do in the DevOps CoP
 - [ ] Change the issue status to 'in progress' (right side panel).
 - [ ] Add this issue to the Project Board CoP: DevOps: Project Board - under the Projects section (gear in right side panel).
-- [ ] Attend weekly team meeting, Wednesdays 6-8pm PST.
-  - [ ] Note: There are no meetings on the 1st Wednesday of every month.
+- [ ] Attend the weekly DevOps CoP team meeting. See [CoP Meetings](https://github.com/hackforla/devops/wiki/CoP-Meetings) on the wiki for the time, which weeks we skip, and how to get onto the calendar invite.
 - [ ] Complete the steps in [Creating a personal AWS account](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#creating-a-personal-aws-account) and [Login as root user & setup MFA](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#login-as-root-user-&-setup-mfa).
 - [ ] Read and follow the instructions in [Setting up IAM and AWS CLI](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#setting-up-iam-and-aws-cli) for:
     - [ ] [Creating an IAM User](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#create-an-iam-group)
