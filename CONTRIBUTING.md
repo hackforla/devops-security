@@ -260,6 +260,15 @@ Remember to match these values to the ones in your backend state (and replace US
 ### **Terraform Setup and Execution Instructions**
 Make the required changes and execute them to see the changes in your own AWS account
 
+**Note:** By default this configuration manages IAM resources only (`iam_only = true`). The CloudTrail trails and log buckets in `cloudtrail.tf` belong to the Hack for LA AWS account and are skipped, so you don't need to set anything for a test run in your own account. Everything else is still created in your account, including:
+ * every IAM user this repo declares
+ * the `ops-leads` group, with `AdministratorAccess` attached
+ * a GitHub Actions OIDC provider. AWS allows only one per account, so `terraform apply` fails with `EntityAlreadyExists` if your account already has one.
+
+Run `terraform destroy` when you are finished to remove them.
+
+**Note:** Any plan or apply against the Hack for LA AWS account must pass `-var iam_only=false`. The GitHub Actions workflows already do this.
+
 - Change into `terraform` directory with 
 
 ```bash

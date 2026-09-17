@@ -13,8 +13,3 @@
 resource "aws_iam_group" "project_leads" {
   name = "project-leads"
 }
-
-import {
-  to = aws_iam_group.project_leads
-  id = "project-leads"
-}

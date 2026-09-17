@@ -9,7 +9,8 @@
 //
 // ManageAccessKeys is attached to the ops-leads group by
 // aws_iam_group_policy_attachment.manageAccessKeys in aws-groups.tf, which
-// still refers to it by literal ARN. That attachment is unchanged here.
+// refers to this resource's arn rather than a literal ARN, so it also resolves
+// in a contributor's own AWS account.
 
 resource "aws_iam_policy" "manage_access_keys" {
   name = "ManageAccessKeys"
@@ -18,9 +19,4 @@ resource "aws_iam_policy" "manage_access_keys" {
   // already on the policy in the account.
   description = "Policy for creating, listing, and updating Access Keys"
   policy      = file("${path.module}/aws-custom-policies/existing-policies/manage-access-keys-policy.json")
-}
-
-import {
-  to = aws_iam_policy.manage_access_keys
-  id = "arn:aws:iam::035866691871:policy/ManageAccessKeys"
 }
