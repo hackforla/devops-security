@@ -34,3 +34,4 @@ jobs:
       with:
         path: terraform
         backend_config_file: terraform/prod.backend.tfvars
+        variables: iam_only = false

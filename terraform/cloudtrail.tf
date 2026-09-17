@@ -17,6 +17,13 @@
 // indefinitely), and the disagreement over log file validation, which is reproduced below
 // rather than resolved.
 //
+// Everything here is skipped unless var.iam_only is false (see variables.tf). The bucket
+// names, bucket policies and the backend bucket selector all belong to the Hack for LA
+// account, so none of this can be created in a contributor's own AWS account. The CI
+// workflows set iam_only = false. The trails and buckets carry prevent_destroy so that a
+// run against the Hack for LA account which forgets to do the same fails at plan time
+// instead of planning to destroy the account's audit logging.
+//
 // A bucket is not one resource. Since AWS provider v4 the policy, public access block,
 // encryption and ownership controls are each their own resource with their own import --
 // the same trap terraform/import.tf in hackforla/incubator documents.
@@ -26,7 +33,13 @@
 // ---------------------------------------------------------------------------
 
 resource "aws_s3_bucket" "tf_backend_logs" {
+  count = var.iam_only ? 0 : 1
+
   bucket = "aws-cloudtrail-logs-035866691871-4b8654bf"
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 // Reproduced verbatim from the live bucket. These two statements are what let CloudTrail
@@ -38,7 +51,9 @@ resource "aws_s3_bucket" "tf_backend_logs" {
 // equivalent to AWS, and both are left exactly as stored. Normalising them would be a
 // change to a live policy for no behavioural gain.
 resource "aws_s3_bucket_policy" "tf_backend_logs" {
-  bucket = aws_s3_bucket.tf_backend_logs.id
+  count = var.iam_only ? 0 : 1
+
+  bucket = aws_s3_bucket.tf_backend_logs[0].id
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -73,7 +88,9 @@ resource "aws_s3_bucket_policy" "tf_backend_logs" {
 }
 
 resource "aws_s3_bucket_public_access_block" "tf_backend_logs" {
-  bucket = aws_s3_bucket.tf_backend_logs.id
+  count = var.iam_only ? 0 : 1
+
+  bucket = aws_s3_bucket.tf_backend_logs[0].id
 
   block_public_acls       = true
   block_public_policy     = true
@@ -84,7 +101,9 @@ resource "aws_s3_bucket_public_access_block" "tf_backend_logs" {
 // blocked_encryption_types is deliberately not set. The provider reads it back as
 // ["SSE-C"] on both buckets but it is computed, so leaving it out produces no diff.
 resource "aws_s3_bucket_server_side_encryption_configuration" "tf_backend_logs" {
-  bucket = aws_s3_bucket.tf_backend_logs.id
+  count = var.iam_only ? 0 : 1
+
+  bucket = aws_s3_bucket.tf_backend_logs[0].id
 
   rule {
     apply_server_side_encryption_by_default {
@@ -98,7 +117,9 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "tf_backend_logs" 
 // equivalent resource is declared for it below -- declaring one would create it rather
 // than import it, which is a live change.
 resource "aws_s3_bucket_ownership_controls" "tf_backend_logs" {
-  bucket = aws_s3_bucket.tf_backend_logs.id
+  count = var.iam_only ? 0 : 1
+
+  bucket = aws_s3_bucket.tf_backend_logs[0].id
 
   rule {
     object_ownership = "BucketOwnerEnforced"
@@ -109,8 +130,10 @@ resource "aws_s3_bucket_ownership_controls" "tf_backend_logs" {
 // the provider's default_tags would plan to REMOVE it, which is why this is the one
 // resource in this file carrying a tags block.
 resource "aws_cloudtrail" "tf_backend_logs" {
+  count = var.iam_only ? 0 : 1
+
   name                          = "devops-security-tf-backend-logs"
-  s3_bucket_name                = aws_s3_bucket.tf_backend_logs.id
+  s3_bucket_name                = aws_s3_bucket.tf_backend_logs[0].id
   include_global_service_events = true
   is_multi_region_trail         = true
   enable_log_file_validation    = true
@@ -133,6 +156,10 @@ resource "aws_cloudtrail" "tf_backend_logs" {
   tags = {
     project = "devops-security"
   }
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -140,13 +167,21 @@ resource "aws_cloudtrail" "tf_backend_logs" {
 // ---------------------------------------------------------------------------
 
 resource "aws_s3_bucket" "management_events" {
+  count = var.iam_only ? 0 : 1
+
   bucket = "aws-cloudtrail-logs-035866691871-6539ef03"
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 // Verbatim from the live bucket, including the "AWS:SourceArn" spelling -- see the note on
 // the policy above.
 resource "aws_s3_bucket_policy" "management_events" {
-  bucket = aws_s3_bucket.management_events.id
+  count = var.iam_only ? 0 : 1
+
+  bucket = aws_s3_bucket.management_events[0].id
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -181,7 +216,9 @@ resource "aws_s3_bucket_policy" "management_events" {
 }
 
 resource "aws_s3_bucket_public_access_block" "management_events" {
-  bucket = aws_s3_bucket.management_events.id
+  count = var.iam_only ? 0 : 1
+
+  bucket = aws_s3_bucket.management_events[0].id
 
   block_public_acls       = true
   block_public_policy     = true
@@ -190,7 +227,9 @@ resource "aws_s3_bucket_public_access_block" "management_events" {
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "management_events" {
-  bucket = aws_s3_bucket.management_events.id
+  count = var.iam_only ? 0 : 1
+
+  bucket = aws_s3_bucket.management_events[0].id
 
   rule {
     apply_server_side_encryption_by_default {
@@ -203,8 +242,10 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "management_events
 // Log file validation is off on this trail and on for the other. That inconsistency is
 // reproduced rather than resolved -- turning it on is a live change and its own ticket.
 resource "aws_cloudtrail" "management_events" {
+  count = var.iam_only ? 0 : 1
+
   name                          = "management-events"
-  s3_bucket_name                = aws_s3_bucket.management_events.id
+  s3_bucket_name                = aws_s3_bucket.management_events[0].id
   include_global_service_events = true
   is_multi_region_trail         = true
   enable_log_file_validation    = false
@@ -216,5 +257,9 @@ resource "aws_cloudtrail" "management_events" {
       field  = "eventCategory"
       equals = ["Management"]
     }
+  }
+
+  lifecycle {
+    prevent_destroy = true
   }
 }

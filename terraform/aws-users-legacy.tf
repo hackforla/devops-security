@@ -21,13 +21,3 @@ resource "aws_iam_user" "fangyiliu" {
 resource "aws_iam_user" "jack_pashayan" {
   name = "jack.pashayan"
 }
-
-import {
-  to = aws_iam_user.fangyiliu
-  id = "fangyiliu"
-}
-
-import {
-  to = aws_iam_user.jack_pashayan
-  id = "jack.pashayan"
-}

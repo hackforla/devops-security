@@ -10,7 +10,7 @@ module "iam_read_only_group" {
   }
 }
 
-//import ops-leads group
+// ops-leads group
 resource "aws_iam_group" "ops_leads_group" {
 	name = "ops-leads"
 }
@@ -22,7 +22,7 @@ resource "aws_iam_group_policy_attachment" "admin"{
 
 resource "aws_iam_group_policy_attachment" "manageAccessKeys"{
 	group = aws_iam_group.ops_leads_group.name
-	policy_arn = "arn:aws:iam::035866691871:policy/ManageAccessKeys"
+	policy_arn = aws_iam_policy.manage_access_keys.arn
 } 
 
 	
