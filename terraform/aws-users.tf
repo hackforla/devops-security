@@ -66,3 +66,15 @@ module "iam_user_Ganeshswaminathan1912" {
   user_groups = ["read-only-group"]
 }
 
+
+module "iam_user_Sbairamian" {
+  source = "./modules/aws-users"
+
+  user_name = "sbairamian"
+  user_tags = {
+    "Project"      = "devops-security"
+    "Access Level" = "1"
+  }
+  user_groups = ["read-only-group"]
+}
+
