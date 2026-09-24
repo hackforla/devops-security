@@ -25,9 +25,9 @@ As a new member on the HfLA devops-security team, fill in the following fields a
 - [ ] Change the issue status to 'in progress' (right side panel).
 - [ ] Add this issue to the Project Board CoP: DevOps: Project Board - under the Projects section (gear in right side panel).
 - [ ] Attend the weekly DevOps CoP team meeting. See [CoP Meetings](https://github.com/hackforla/devops/wiki/CoP-Meetings) on the wiki for the time, which weeks we skip, and how to get onto the calendar invite.
-- [ ] Complete the steps in [Creating a personal AWS account](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#creating-a-personal-aws-account) and [Login as root user & setup MFA](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#login-as-root-user-&-setup-mfa).
+- [ ] Complete the steps in [Creating a personal AWS account](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#creating-a-personal-aws-account) and [Login as root user & setup MFA](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#login-as-root-user--setup-mfa).
 - [ ] Read and follow the instructions in [Setting up IAM and AWS CLI](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#setting-up-iam-and-aws-cli) for:
-    - [ ] [Creating an IAM User](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#create-an-iam-group)
+    - [ ] [Creating an IAM User](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#create-an-iam-user)
     - [ ] [Creating an IAM Group](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#create-an-iam-group)
     - [ ] [Attaching IAM user to IAM Group](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#attach-iam-user-to-iam-group)
     - [ ] [Providing `AdministratorAccess` policy to IAM group](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#attach-administratoraccess-policy-to-iam-group)
