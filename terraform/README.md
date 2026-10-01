@@ -6,7 +6,7 @@ Resources created by this code repository.
 ## Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | <a name="module_aws_custom_policies"></a> [aws\_custom\_policies](#module\_aws\_custom\_policies) | ./modules/aws-policies | n/a |
 | <a name="module_iam_oidc_gha_incubator"></a> [iam\_oidc\_gha\_incubator](#module\_iam\_oidc\_gha\_incubator) | ./modules/aws-gha-oidc-providers | n/a |
 | <a name="module_iam_read_only_group"></a> [iam\_read\_only\_group](#module\_iam\_read\_only\_group) | ./modules/aws-groups | n/a |
@@ -14,13 +14,14 @@ Resources created by this code repository.
 | <a name="module_iam_user_Sbairamian"></a> [iam\_user\_Sbairamian](#module\_iam\_user\_Sbairamian) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_alexe"></a> [iam\_user\_alexe](#module\_iam\_user\_alexe) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_benettonkkb"></a> [iam\_user\_benettonkkb](#module\_iam\_user\_benettonkkb) | ./modules/aws-users | n/a |
+| <a name="module_iam_user_herehfla"></a> [iam\_user\_herehfla](#module\_iam\_user\_herehfla) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_rsakuma"></a> [iam\_user\_rsakuma](#module\_iam\_user\_rsakuma) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_testiamuser"></a> [iam\_user\_testiamuser](#module\_iam\_user\_testiamuser) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_tylerthome"></a> [iam\_user\_tylerthome](#module\_iam\_user\_tylerthome) | ./modules/aws-users | n/a |
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [aws_cloudtrail.management_events](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail) | resource |
 | [aws_cloudtrail.tf_backend_logs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail) | resource |
 | [aws_iam_group.ops_leads_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group) | resource |
@@ -47,18 +48,18 @@ Resources created by this code repository.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_iam_only"></a> [iam\_only](#input\_iam\_only) | Manage IAM resources only, skipping the Hack for LA account's CloudTrail trails and log buckets. Set to false for the Hack for LA account. | `bool` | `true` | no |
 
 ## Providers
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="provider_aws"></a> [aws](#provider\_aws) | 6.64.0 |
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.16.0 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 6.64.0 |
  
