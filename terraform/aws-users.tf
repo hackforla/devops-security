@@ -78,3 +78,13 @@ module "iam_user_Sbairamian" {
   user_groups = ["read-only-group"]
 }
 
+module "iam_user_herehfla" {
+  source = "./modules/aws-users"
+
+  user_name = "here.hfla" # Replace with GitHub handle
+  user_tags = {
+    "Project"      = "devops-security"
+    "Access Level" = "1"
+  }
+  user_groups = ["read-only-group"]
+}
