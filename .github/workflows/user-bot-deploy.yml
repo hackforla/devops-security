@@ -1,0 +1,78 @@
+name: Deploy user-bot Lambda
+
+# Ships the user-bot Lambda's code. Terraform (terraform/user-bot.tf) owns everything
+# else about the function -- runtime, role, trigger -- and ignores its code, so this
+# workflow and terraform-apply.yaml never overwrite each other.
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'lambda/user-bot/**'
+      - '.github/workflows/user-bot-deploy.yml'
+  # Recovery path: redeploy without a new commit, e.g. after a failed run. The deploy
+  # role only trusts refs/heads/main, so dispatching from any other branch fails at
+  # the credentials step rather than deploying unreviewed code.
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+# Two merges close together must not deploy over each other out of order.
+concurrency:
+  group: user-bot-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: lambda/user-bot
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: lambda/user-bot/.nvmrc
+          cache: npm
+          cache-dependency-path: lambda/user-bot/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Run again here so that exactly what ships has passed.
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Unit tests
+        run: npm test
+
+      - name: Build and package
+        run: |
+          npm run build
+          cd dist && zip -q ../user-bot.zip index.js
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          role-to-assume: arn:aws:iam::035866691871:role/devops-security-user-bot-deploy
+          role-session-name: userbotdeploy
+          # The function lives in us-east-1 because IAM events are only delivered there.
+          aws-region: us-east-1
+
+      - name: Update function code
+        run: |
+          aws lambda update-function-code \
+            --function-name user-bot \
+            --zip-file fileb://user-bot.zip \
+            --query '{CodeSha256: CodeSha256, LastUpdateStatus: LastUpdateStatus}'
+
+      # function-updated-v2 polls GetFunction, the only read the deploy role is granted.
+      - name: Wait for the update to finish
+        run: aws lambda wait function-updated-v2 --function-name user-bot
