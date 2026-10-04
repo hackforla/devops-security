@@ -103,3 +103,52 @@ resource "aws_iam_role_policy_attachment" "incubator_tf_apply_admin" {
   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 }
 
+// Assumed by .github/workflows/user-bot-deploy.yml in THIS repo to ship the user-bot
+// Lambda's code (see user-bot.tf). Unlike devops-security-tf-plan and -apply above, it
+// can be declared here: nothing assumes it until Terraform has already run, so there
+// is no bootstrap problem, and it carries the normal managed-by tag rather than exempt.
+//
+// The sub is pinned to main, so neither a pull request nor a workflow_dispatch from
+// another branch can deploy. It can update this one function's code and nothing else;
+// the function's configuration, role and trigger stay with Terraform.
+resource "aws_iam_role" "user_bot_deploy" {
+  name = "devops-security-user-bot-deploy"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = "sts:AssumeRoleWithWebIdentity"
+        Principal = {
+          Federated = module.iam_oidc_gha_incubator.provider_arn
+        }
+        Condition = {
+          StringEquals = {
+            "token.actions.githubusercontent.com:aud" = "sts.amazonaws.com"
+            "token.actions.githubusercontent.com:sub" = "repo:hackforla/devops-security:ref:refs/heads/main"
+          }
+        }
+      }
+    ]
+  })
+}
+
+// GetFunction is what `aws lambda wait function-updated-v2` polls. The older
+// function-updated waiter polls GetFunctionConfiguration instead, which is not granted.
+resource "aws_iam_role_policy" "user_bot_deploy" {
+  name = "user-bot-deploy"
+  role = aws_iam_role.user_bot_deploy.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect   = "Allow"
+        Action   = ["lambda:UpdateFunctionCode", "lambda:GetFunction"]
+        Resource = aws_lambda_function.user_bot.arn
+      }
+    ]
+  })
+}
+

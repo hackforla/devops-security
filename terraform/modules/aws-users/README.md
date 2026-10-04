@@ -16,6 +16,7 @@ This module declares all of the resources necessary to create AWS IAM users.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_slack_id"></a> [slack\_id](#input\_slack\_id) | Slack member ID of the person this user belongs to (Slack profile > Copy member ID). Stored as the user's slack\_id tag, which the user-bot Lambda reads to DM them a temporary console password. | `string` | `null` | no |
 | <a name="input_user_groups"></a> [user\_groups](#input\_user\_groups) | List of IAM groups the user should be a member of | `list(string)` | `[]` | no |
 | <a name="input_user_name"></a> [user\_name](#input\_user\_name) | The name of the IAM user | `string` | n/a | yes |
 | <a name="input_user_path"></a> [user\_path](#input\_user\_path) | Path in which to create the user | `string` | `"/"` | no |

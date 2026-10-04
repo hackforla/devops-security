@@ -10,7 +10,9 @@ resource "aws_iam_user" "user" {
   // attached policy, and the apply fails partway through the batch.
   force_destroy = true
 
-  tags = var.user_tags
+  // slack_id has to be on the user when CreateUser runs: the user-bot Lambda is
+  // triggered by the CreateLoginProfile that follows and reads it from here.
+  tags = merge(var.user_tags, var.slack_id == null ? {} : { slack_id = var.slack_id })
 }
 
 resource "aws_iam_user_login_profile" "user_login" {
