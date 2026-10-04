@@ -21,17 +21,6 @@ module "iam_user_testiamuser" {
   user_groups = ["read-only-group"]
 }
 
-module "iam_user_alexe" {
-  source = "./modules/aws-users"
-
-  user_name = "alexe"
-  user_tags = {
-    "Project"      = "devops-security"
-    "Access Level" = "1"
-  }
-  user_groups = ["ops-leads"]
-}
-
 module "iam_user_rsakuma" {
   source = "./modules/aws-users"
 
