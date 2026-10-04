@@ -11,6 +11,11 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 6.64.0"
     }
+    // Packages the user-bot Lambda's placeholder code; see user-bot.tf.
+    archive = {
+      source  = "hashicorp/archive"
+      version = "~> 2.8.0"
+    }
   }
 }
 

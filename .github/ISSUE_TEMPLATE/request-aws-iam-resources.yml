@@ -12,6 +12,14 @@ body:
       validations: 
         required: true
     - type: input
+      id: slack-member-id
+      attributes:
+        label: Slack Member ID
+        description: "Your Slack member ID, not your @handle: in Slack, open your profile, click the ⋮ menu, and choose Copy member ID. It looks like U0123456789. We use it to send you your AWS console sign-in details on Slack. Leave blank when requesting a service account."
+        placeholder: U0123456789
+      validations:
+        required: false
+    - type: input
       id: project-name
       attributes:
         label: Project(s) Name
