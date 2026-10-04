@@ -49,7 +49,11 @@ export type Result =
 
 export interface Dependencies {
   iam: IAMClient;
-  sender: MessageSender;
+  // Called after the tag checks and before the password is touched. Anything the
+  // sender needs that can fail -- reading the Slack token, above all -- belongs in
+  // here, so that a failure leaves the user's password unchanged instead of resetting
+  // it to something nobody receives.
+  getSender: () => Promise<MessageSender>;
   logger: Logger;
   generatePassword?: () => string;
 }
@@ -74,7 +78,7 @@ function errorName(error: unknown): string {
 }
 
 export function createHandler(deps: Dependencies) {
-  const { iam, sender, logger } = deps;
+  const { iam, getSender, logger } = deps;
   const generatePassword = deps.generatePassword ?? defaultGeneratePassword;
 
   function skip(reason: SkipReason, userName?: string): Result {
@@ -121,6 +125,23 @@ export function createHandler(deps: Dependencies) {
     }
     if (!SLACK_ID_PATTERN.test(slackId)) {
       return skip("invalid-slack-id", userName);
+    }
+
+    // Resolved before the password is reset, not when sending. If the Slack token is
+    // missing, unreadable or still the placeholder, the user keeps their current
+    // password. Errors from here are logged with their message, so getSender must never
+    // put a secret in one (SlackTokenError names the parameter, not its value).
+    let sender: MessageSender;
+    try {
+      sender = await getSender();
+    } catch (error) {
+      const detail = error instanceof Error ? error.message : undefined;
+      logger.error("No message sender available; password left unchanged", {
+        userName,
+        error: errorName(error),
+        detail,
+      });
+      throw new Error(`No message sender available for ${userName}: ${errorName(error)}`);
     }
 
     const password = generatePassword();

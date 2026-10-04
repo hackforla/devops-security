@@ -1,15 +1,19 @@
 import { IAMClient } from "@aws-sdk/client-iam";
+import { SSMClient } from "@aws-sdk/client-ssm";
 
 import { createHandler } from "./handler";
 import { consoleLogger } from "./logger";
-import { StubMessageSender } from "./senders/stub";
+import { SlackMessageSender } from "./senders/slack";
+import { createSlackTokenLoader } from "./slack-token";
 
-// Wired to the stub sender on purpose. Switching to SlackMessageSender needs a Slack
-// app, its bot token, a secret the function can read, and permission to read it --
-// none of which exist yet. See the "Out of scope" section of
-// hackforla/devops-security#209.
+// SLACK_TOKEN_PARAMETER names the SSM SecureString holding the Slack bot token; it is
+// set by terraform/user-bot.tf. The token is read on the first invocation that needs to
+// send, not at import, so a missing token surfaces as a logged refusal for that user
+// rather than as a cold-start crash -- and always before their password is touched.
+const loadSlackToken = createSlackTokenLoader(new SSMClient({}), process.env.SLACK_TOKEN_PARAMETER);
+
 export const handler = createHandler({
   iam: new IAMClient({}),
-  sender: new StubMessageSender(consoleLogger),
+  getSender: async () => new SlackMessageSender(await loadSlackToken()),
   logger: consoleLogger,
 });
