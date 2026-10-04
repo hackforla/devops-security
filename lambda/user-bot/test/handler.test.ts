@@ -24,14 +24,15 @@ function setup(tags: { Key: string; Value: string }[] = [MANAGED, SLACK]) {
 
   const sent: DirectMessage[] = [];
   const sender: MessageSender = { send: vi.fn(async (message) => void sent.push(message)) };
+  const getSender = vi.fn(async () => sender);
   const logger = captureLogger();
   const deps: Dependencies = {
     iam: new IAMClient({ region: "us-east-1" }),
-    sender,
+    getSender,
     logger,
     generatePassword: () => TEST_PASSWORD,
   };
-  return { handler: createHandler(deps), sender, sent, logger };
+  return { handler: createHandler(deps), sender, getSender, sent, logger };
 }
 
 beforeEach(() => {
@@ -91,13 +92,15 @@ describe("skips without touching the password or sending anything", () => {
   ];
 
   it.each(cases)("when %s", async (_name, tags, reason) => {
-    const { handler, sender, logger } = setup(tags);
+    const { handler, sender, getSender, logger } = setup(tags);
 
     const result = await handler(createLoginProfileEvent());
 
     expect(result).toEqual({ outcome: "skipped", reason, userName: "new.member" });
     expect(iamMock.commandCalls(UpdateLoginProfileCommand)).toHaveLength(0);
     expect(sender.send).not.toHaveBeenCalled();
+    // A skipped user does not even cause the Slack token to be read.
+    expect(getSender).not.toHaveBeenCalled();
     expect(logger.lines).toContainEqual(
       expect.objectContaining({ fields: expect.objectContaining({ reason, userName: "new.member" }) }),
     );
@@ -148,6 +151,45 @@ describe("skips without touching the password or sending anything", () => {
   });
 });
 
+describe("when no sender is available (e.g. the Slack token cannot be read)", () => {
+  it("throws before touching the password, and sends nothing", async () => {
+    const { handler, getSender, sender, logger } = setup();
+    const failure = new Error("/user-bot/slack-bot-token does not hold a Slack bot token");
+    failure.name = "SlackTokenError";
+    getSender.mockRejectedValueOnce(failure);
+
+    const error = await handler(createLoginProfileEvent()).catch((e: unknown) => e);
+
+    expect(error).toBeInstanceOf(Error);
+    expect((error as Error).message).toContain("SlackTokenError");
+    expect(iamMock.commandCalls(UpdateLoginProfileCommand)).toHaveLength(0);
+    expect(sender.send).not.toHaveBeenCalled();
+    expect(logger.lines).toContainEqual(
+      expect.objectContaining({
+        level: "error",
+        fields: expect.objectContaining({ userName: "new.member", error: "SlackTokenError" }),
+      }),
+    );
+  });
+
+  it("resolves the sender only after the tag checks pass, and before the reset", async () => {
+    const { handler, getSender } = setup();
+    const order: string[] = [];
+    getSender.mockImplementationOnce(async () => {
+      order.push("getSender");
+      return { send: async () => void order.push("send") };
+    });
+    iamMock.on(UpdateLoginProfileCommand).callsFake(() => {
+      order.push("UpdateLoginProfile");
+      return {};
+    });
+
+    await handler(createLoginProfileEvent());
+
+    expect(order).toEqual(["getSender", "UpdateLoginProfile", "send"]);
+  });
+});
+
 describe("failures", () => {
   it("rethrows when ListUserTags fails for another reason, and changes nothing", async () => {
     const { handler, sender } = setup();
@@ -193,7 +235,7 @@ describe("the password never reaches a log", () => {
     const generated: string[] = [];
     const handler = createHandler({
       iam: new IAMClient({ region: "us-east-1" }),
-      sender: { send: async () => {} },
+      getSender: async () => ({ send: async () => {} }),
       logger,
       generatePassword: () => {
         const password = generatePassword();
