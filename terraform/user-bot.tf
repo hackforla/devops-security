@@ -110,10 +110,51 @@ resource "aws_lambda_function" "user_bot" {
   filename         = data.archive_file.user_bot_placeholder.output_path
   source_code_hash = data.archive_file.user_bot_placeholder.output_base64sha256
 
+  // The name, not the token. The function reads and decrypts the value at cold start.
+  environment {
+    variables = {
+      SLACK_TOKEN_PARAMETER = aws_ssm_parameter.user_bot_slack_token.name
+    }
+  }
+
   depends_on = [aws_cloudwatch_log_group.user_bot]
 
   lifecycle {
     ignore_changes = [filename, source_code_hash]
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Slack bot token
+// ---------------------------------------------------------------------------
+
+// The Slack app's bot token (xoxb-...). Terraform creates the parameter with a
+// placeholder; the real token is set by hand with `aws ssm put-parameter --overwrite`
+// (see lambda/user-bot/README.md), so it never appears in git or in Terraform state.
+// See hackforla/devops-security#212.
+//
+// value_wo rather than value is what keeps the token out of state. With `value`, the
+// provider reads the decrypted parameter back into state on every refresh. With the
+// write-only value_wo, its read sets `value` to null, and the value is only ever
+// written when value_wo_version changes.
+//
+// Two traps, both because the real value lives outside Terraform:
+//   - Never change value_wo_version. That writes the placeholder over the real token,
+//     and the bot refuses to send until the token is set again.
+//   - Do not change other arguments, such as description, in place. The provider then
+//     sends an empty value and the apply fails.
+resource "aws_ssm_parameter" "user_bot_slack_token" {
+  region = local.user_bot_region
+
+  name        = "/user-bot/slack-bot-token"
+  description = "Slack bot token for the user-bot Lambda. Set by hand; see lambda/user-bot/README.md in hackforla/devops-security."
+  type        = "SecureString"
+
+  value_wo         = "placeholder-set-by-hand"
+  value_wo_version = 1
+
+  lifecycle {
+    prevent_destroy = true
   }
 }
 
@@ -164,6 +205,14 @@ resource "aws_iam_role_policy" "user_bot" {
             "iam:ResourceTag/managed-by" = "terraform-devops-security"
           }
         }
+      },
+      // No kms:Decrypt statement: the parameter uses the AWS-managed aws/ssm key, whose
+      // key policy already allows decryption through SSM for principals in the account.
+      {
+        Sid      = "ReadSlackToken"
+        Effect   = "Allow"
+        Action   = "ssm:GetParameter"
+        Resource = aws_ssm_parameter.user_bot_slack_token.arn
       },
       {
         Sid      = "WriteOwnLogs"
