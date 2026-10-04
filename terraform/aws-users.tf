@@ -21,6 +21,18 @@ module "iam_user_testiamuser" {
   user_groups = ["read-only-group"]
 }
 
+module "iam_user_ale210" {
+  source = "./modules/aws-users"
+
+  user_name = "ale210"
+  slack_id  = "U078B1S0XDM"
+  user_tags = {
+    "Project"      = "devops-security"
+    "Access Level" = "1"
+  }
+  user_groups = ["ops-leads"]
+}
+
 module "iam_user_rsakuma" {
   source = "./modules/aws-users"
 
