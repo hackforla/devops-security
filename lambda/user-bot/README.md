@@ -24,7 +24,7 @@ When both hold, it:
 1. reads the Slack bot token (see [The Slack token](#the-slack-token)). **If that fails, it stops here and the user's password is not touched;**
 2. generates a 20-character password containing all four character classes;
 3. sets it with `UpdateLoginProfile` and `PasswordResetRequired: true`, so the user must replace it at first sign-in;
-4. DMs the user, as the Slack app, with the sign-in page, their IAM user name and the temporary password.
+4. DMs the user, as the Slack app, with the sign-in page, their IAM user name, the temporary password, and a link straight to the **Assign MFA device** wizard for their own user (`MFA_SETUP_URL` in `src/message.ts`). That link only works once they are signed in.
 
 Step 1 comes before the reset on purpose. Reading the token at send time would mean a bad token leaves the user with a new password that nobody received.
 
