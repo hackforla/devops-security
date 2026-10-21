@@ -36,6 +36,7 @@ As a new member on the HfLA devops-security team, fill in the following fields a
 - [ ] Complete the instructions in [AWS Documentation](https://docs.aws.amazon.com/cli/v1/userguide/cli-chap-install.html) and choose your operating system to install AWS CLI. 
 - [ ] Complete the instruction in [AWS Documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-authentication-short-term.html) to setup the AWS CLI.
 - [ ] Follow the instructions in [Creating a backend state](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#creating-backend-state) to create the S3 bucket.
+- [ ] Create the S3 bucket
 - [ ] Install Terraform locally by following the instructions of the installation guide mentioned in [Installing Terraform](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#installing-terraform)
 - [ ] Install Terraform Docs locally by following the instructions of the installation guide mentioned in [Installing Terraform docs](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#installing-terraform-docs)
 - [ ] Complete the instructions in [Clone the repository](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#clone-the-repository)
@@ -76,7 +77,7 @@ Note: You must be authenticated to your AWS account via the CLI for the next com
 If you are unable to authenticate from your local machine using the CLI, post in the #ops channel in Slack so that the team can help you get unblocked.
 - [ ] Execute the command `terraform init` to initialize terraform in the directory. Address any failures that arise (if any).
 - [ ] Execute the command `terraform plan` this will output a plan replicating the same IAM resources as the devops security account. Address any failures that arise (if any).
-- [ ] Then execute the command `terraform apply` this will create all of the resources that are currently managed by Devops Security. **
+- [ ] Then execute the command `terraform apply` this will create all of the resources that are currently managed by Devops Security.  All of the resources created here incur zero cost.
   - [ ] **If you have cost concerns, Run a Terraform Destroy to take down all of the resources you created (don't worry, you can recreate them just as quickly). If you create resources outside of what's described in this issue, you may incur charges.**
 - [ ] Update the README using Terraform Docs to document changes
   - [ ] ```terraform-docs -c .terraform.docs.yml .```
