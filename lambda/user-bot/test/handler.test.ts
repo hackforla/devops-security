@@ -8,7 +8,7 @@ import { mockClient } from "aws-sdk-client-mock";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { createHandler, type Dependencies } from "../src/handler";
-import { SIGN_IN_URL } from "../src/message";
+import { MFA_SETUP_URL, SIGN_IN_URL } from "../src/message";
 import { generatePassword } from "../src/password";
 import type { DirectMessage, MessageSender } from "../src/senders/types";
 import { captureLogger, createLoginProfileEvent, TEST_PASSWORD, TEST_SLACK_ID } from "./helpers";
@@ -58,6 +58,7 @@ describe("happy path", () => {
     expect(sent[0]!.text).toContain(TEST_PASSWORD);
     expect(sent[0]!.text).toContain("new.member");
     expect(sent[0]!.text).toContain(SIGN_IN_URL);
+    expect(sent[0]!.text).toContain(MFA_SETUP_URL);
     expect(logger.text()).not.toContain(TEST_PASSWORD);
   });
 
