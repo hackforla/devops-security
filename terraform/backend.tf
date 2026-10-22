@@ -4,6 +4,7 @@ terraform {
   // CI silently upgraded itself -- state has been written by 1.7 through 1.16.
   // This line alone chooses the CI Terraform version.
   required_version = "~> 1.16.0"
+  // Locking config lives in terraform/prod.backend.tfvars (use_lockfile).
   backend "s3" {
   }
   required_providers {

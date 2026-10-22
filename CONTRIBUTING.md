@@ -154,22 +154,6 @@ aws s3api put-bucket-encryption --bucket USERNAME-hfla-ops-terraform-state --ser
 }'
 ```
 
-#### Set up DynamoDB to store the backend state
-
-- Create table `hfla_ops_terraform_table`
-- Set partition key to `LockID` with a type of `string`
-- Choose on-demand capacity
-
-You can create the table from the AWS UI, CloudShell, or from the CLI using the following command:
-
-```bash
-aws dynamodb create-table \
-    --table-name hfla_ops_terraform_table \
-    --attribute-definitions AttributeName=LockID,AttributeType=S \
-    --key-schema AttributeName=LockID,KeyType=HASH \
-    --billing-mode PAY_PER_REQUEST
-```
-
 <sub>[Back to Top](#)</sub>
 ***
 
@@ -248,7 +232,7 @@ After creating a backend state, create a `backend.tfvars` file in the `terraform
 bucket         = "USERNAME-hfla-ops-terraform-state"
 key            = "devops-security/terraform.tfstate"
 region         = "us-west-2"
-dynamodb_table = "hfla_ops_terraform_table"
+use_lockfile   = true
 encrypt        = true
 ```
 

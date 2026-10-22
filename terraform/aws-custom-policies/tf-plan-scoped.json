@@ -25,20 +25,6 @@
         "arn:aws:s3:::hfla-ops-terraform-state",
         "arn:aws:s3:::hfla-ops-terraform-state/*"
       ]
-    },
-    {
-      "Sid": "AllowDynamoDBLockTableAccessForTerraformPlan",
-      "Effect": "Allow",
-      "Action": [
-        "dynamodb:PutItem",
-        "dynamodb:DeleteItem",
-        "dynamodb:GetItem",
-        "dynamodb:UpdateItem",
-        "dynamodb:DescribeTable"
-      ],
-      "Resource": [
-        "arn:aws:dynamodb:us-west-2:035866691871:table/hfla_ops_terraform_table"
-      ]
     }
   ]
 }
