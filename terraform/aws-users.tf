@@ -78,3 +78,15 @@ module "iam_user_Sbairamian" {
   }
   user_groups = ["read-only-group"]
 }
+
+module "iam_user_here" {
+  source = "./modules/aws-users"
+
+  user_name = "here"
+  slack_id  = "U07PKPHF7QQ"
+  user_tags = {
+    "Project"      = "devops-security"
+    "Access Level" = "1"
+  }
+  user_groups = ["read-only-group"]
+}
