@@ -45,17 +45,6 @@ module "iam_user_rsakuma" {
 }
 
 
-module "iam_user_benettonkkb" {
-  source = "./modules/aws-users"
-
-  user_name = "benettonkkb"
-  user_tags = {
-    "Project"      = "devops-security"
-    "Access Level" = "1"
-  }
-  user_groups = ["read-only-group"]
-}
-
 module "iam_user_Ganeshswaminathan1912" {
   source = "./modules/aws-users"
 
