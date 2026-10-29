@@ -10,12 +10,11 @@
 // events. Neither is an organization trail, so neither covers the payer account
 // 504695638931.
 //
-// This file adopts what is there as-is. Four things are missing from both trails and are
+// This file adopts what is there as-is. Three things are missing from both trails and are
 // deliberately NOT added here, because each changes live behaviour and belongs in its own
 // ticket: KMS encryption (both use SSE-S3), a CloudWatch Logs destination (so there is no
-// alerting path off either trail), a bucket lifecycle configuration (logs accumulate
-// indefinitely), and the disagreement over log file validation, which is reproduced below
-// rather than resolved.
+// alerting path off either trail), and a bucket lifecycle configuration (logs accumulate
+// indefinitely).
 //
 // Everything here is skipped unless var.iam_only is false (see variables.tf). The bucket
 // names, bucket policies and the backend bucket selector all belong to the Hack for LA
@@ -239,8 +238,8 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "management_events
   }
 }
 
-// Log file validation is off on this trail and on for the other. That inconsistency is
-// reproduced rather than resolved -- turning it on is a live change and its own ticket.
+// Log file validation is enabled on both trails, so the two trails now agree.
+// Validation is on for both.
 resource "aws_cloudtrail" "management_events" {
   count = var.iam_only ? 0 : 1
 
@@ -248,7 +247,7 @@ resource "aws_cloudtrail" "management_events" {
   s3_bucket_name                = aws_s3_bucket.management_events[0].id
   include_global_service_events = true
   is_multi_region_trail         = true
-  enable_log_file_validation    = false
+  enable_log_file_validation    = true
 
   advanced_event_selector {
     name = "Management events selector"
