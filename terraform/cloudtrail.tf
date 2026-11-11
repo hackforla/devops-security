@@ -10,11 +10,11 @@
 // events. Neither is an organization trail, so neither covers the payer account
 // 504695638931.
 //
-// This file adopts what is there as-is. Three things are missing from both trails and are
+// This file adopts what is there as-is, plus a 365-day lifecycle configuration on both
+// buckets (hackforla/devops-security#203). Two things are missing from both trails and are
 // deliberately NOT added here, because each changes live behaviour and belongs in its own
-// ticket: KMS encryption (both use SSE-S3), a CloudWatch Logs destination (so there is no
-// alerting path off either trail), and a bucket lifecycle configuration (logs accumulate
-// indefinitely).
+// ticket: KMS encryption (both use SSE-S3) and a CloudWatch Logs destination (so there is
+// no alerting path off either trail).
 //
 // Everything here is skipped unless var.iam_only is false (see variables.tf). The bucket
 // names, bucket policies and the backend bucket selector all belong to the Hack for LA
@@ -122,6 +122,30 @@ resource "aws_s3_bucket_ownership_controls" "tf_backend_logs" {
 
   rule {
     object_ownership = "BucketOwnerEnforced"
+  }
+}
+
+// Expiration only, no storage-class transition. CloudTrail objects average well under
+// Glacier's 128 KB minimum billable size, so transitioning them would cost more than
+// keeping them in Standard. See hackforla/devops-security#203.
+resource "aws_s3_bucket_lifecycle_configuration" "tf_backend_logs" {
+  count = var.iam_only ? 0 : 1
+
+  bucket = aws_s3_bucket.tf_backend_logs[0].id
+
+  rule {
+    id     = "expire-after-365-days"
+    status = "Enabled"
+
+    filter {}
+
+    expiration {
+      days = 365
+    }
+
+    abort_incomplete_multipart_upload {
+      days_after_initiation = 7
+    }
   }
 }
 
@@ -235,6 +259,28 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "management_events
       sse_algorithm = "AES256"
     }
     bucket_key_enabled = false
+  }
+}
+
+// Same rule as tf_backend_logs above; see the comment there for why it is expiration-only.
+resource "aws_s3_bucket_lifecycle_configuration" "management_events" {
+  count = var.iam_only ? 0 : 1
+
+  bucket = aws_s3_bucket.management_events[0].id
+
+  rule {
+    id     = "expire-after-365-days"
+    status = "Enabled"
+
+    filter {}
+
+    expiration {
+      days = 365
+    }
+
+    abort_incomplete_multipart_upload {
+      days_after_initiation = 7
+    }
   }
 }
 
