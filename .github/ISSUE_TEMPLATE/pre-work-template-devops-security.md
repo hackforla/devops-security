@@ -38,7 +38,6 @@ As a new member on the HfLA devops-security team, fill in the following fields a
 - [ ] Follow the instructions in [Creating a backend state](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#creating-backend-state) to create the S3 bucket.
 - [ ] Create the S3 bucket
 - [ ] Install Terraform locally by following the instructions of the installation guide mentioned in [Installing Terraform](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#installing-terraform)
-- [ ] Install Terraform Docs locally by following the instructions of the installation guide mentioned in [Installing Terraform docs](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#installing-terraform-docs)
 - [ ] Complete the instructions in [Clone the repository](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#clone-the-repository)
 - [ ] Submit a [new request](https://github.com/hackforla/devops-security/issues/new?assignees=&projects=&template=request-aws-iam-resources.yml) to create new AWS user account and then self-assign this issue.
 - [ ] Create a new branch from main by executing the command
@@ -79,10 +78,9 @@ If you are unable to authenticate from your local machine using the CLI, post in
 - [ ] Execute the command `terraform plan` this will output a plan replicating the same IAM resources as the devops security account. Address any failures that arise (if any).
 - [ ] Then execute the command `terraform apply` this will create all of the resources that are currently managed by Devops Security.  All of the resources created here incur zero cost.
   - [ ] **If you have cost concerns, Run a Terraform Destroy to take down all of the resources you created (don't worry, you can recreate them just as quickly). If you create resources outside of what's described in this issue, you may incur charges.**
-- [ ] Update the README using Terraform Docs to document changes
-  - [ ] ```terraform-docs -c .terraform.docs.yml .```
 - [ ] Once you have tested your changes, stage them in git with 
     - [ ] `git status` command.
     - [ ] then `git add path/to/file` (you can copy from above output for the file path).
 - [ ] Commit the changes by executing `git commit -m "brief description of changes"`.
 - [ ] Push the changes with `git push --set-upstream origin name-of-branch`
+- [ ] Once you open a pull request, CI regenerates the Terraform READMEs and pushes a `terraform-docs: automated updates…` commit to your branch. Run `git pull` before pushing again. See [Generate Terraform Docs](https://github.com/hackforla/devops-security/blob/main/CONTRIBUTING.md#generate-terraform-docs).
