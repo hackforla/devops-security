@@ -13,5 +13,10 @@ module "aws_custom_policies" {
       description = "Allows incubator tf plan role to read specific Secrets Manager secrets needed for terraform plan"
       filename    = "tf-plan-scoped.json"
     }
+    # The AWS-managed ReadOnlyAccess policy grants no geo: actions at all.
+    "IncubatorTfPlanLocationRead" = {
+      description = "Allows incubator tf plan role to read Amazon Location resources during terraform plan"
+      filename    = "tf-plan-location-read.json"
+    }
   }
 }
