@@ -79,3 +79,15 @@ module "iam_user_here" {
   }
   user_groups = ["read-only-group"]
 }
+
+module "iam_user_entrotech" {
+  source = "./modules/aws-users"
+
+  user_name = "entrotech"
+  slack_id  = "UFLDX9V19"
+  user_tags = {
+    "Project"      = "food-oasis"
+    "Access Level" = "1"
+  }
+  user_groups = ["ops-leads"]
+}

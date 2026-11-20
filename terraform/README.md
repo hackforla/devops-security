@@ -52,6 +52,7 @@ Terraform directory structure
 | <a name="module_iam_user_Ganeshswaminathan1912"></a> [iam\_user\_Ganeshswaminathan1912](#module\_iam\_user\_Ganeshswaminathan1912) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_Sbairamian"></a> [iam\_user\_Sbairamian](#module\_iam\_user\_Sbairamian) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_ale210"></a> [iam\_user\_ale210](#module\_iam\_user\_ale210) | ./modules/aws-users | n/a |
+| <a name="module_iam_user_entrotech"></a> [iam\_user\_entrotech](#module\_iam\_user\_entrotech) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_here"></a> [iam\_user\_here](#module\_iam\_user\_here) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_rsakuma"></a> [iam\_user\_rsakuma](#module\_iam\_user\_rsakuma) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_testiamuser"></a> [iam\_user\_testiamuser](#module\_iam\_user\_testiamuser) | ./modules/aws-users | n/a |
