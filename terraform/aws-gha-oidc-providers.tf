@@ -72,6 +72,11 @@ resource "aws_iam_role_policy_attachment" "incubator_tf_plan_secrets_read" {
   policy_arn = module.aws_custom_policies.policy_arns["IncubatorTfPlanSecretsRead"]
 }
 
+resource "aws_iam_role_policy_attachment" "incubator_tf_plan_location_read" {
+  role       = aws_iam_role.incubator_tf_plan.name
+  policy_arn = module.aws_custom_policies.policy_arns["IncubatorTfPlanLocationRead"]
+}
+
 resource "aws_iam_role" "incubator_tf_apply" {
   name = "incubator-tf-apply"
   assume_role_policy = jsonencode({
