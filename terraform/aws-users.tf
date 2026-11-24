@@ -91,3 +91,15 @@ module "iam_user_entrotech" {
   }
   user_groups = ["ops-leads"]
 }
+
+module "iam_user_trillium" {
+  source = "./modules/aws-users"
+
+  user_name = "trillium"
+  slack_id  = "U010G9864Q1"
+  user_tags = {
+    "Project"      = "devops-security"
+    "Access Level" = "1"
+  }
+  user_groups = ["ops-leads"]
+}
