@@ -56,6 +56,7 @@ Terraform directory structure
 | <a name="module_iam_user_here"></a> [iam\_user\_here](#module\_iam\_user\_here) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_rsakuma"></a> [iam\_user\_rsakuma](#module\_iam\_user\_rsakuma) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_testiamuser"></a> [iam\_user\_testiamuser](#module\_iam\_user\_testiamuser) | ./modules/aws-users | n/a |
+| <a name="module_iam_user_trillium"></a> [iam\_user\_trillium](#module\_iam\_user\_trillium) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_tylerthome"></a> [iam\_user\_tylerthome](#module\_iam\_user\_tylerthome) | ./modules/aws-users | n/a |
 
 ## Resources
