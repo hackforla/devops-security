@@ -49,6 +49,7 @@ Terraform directory structure
 | <a name="module_aws_custom_policies"></a> [aws\_custom\_policies](#module\_aws\_custom\_policies) | ./modules/aws-policies | n/a |
 | <a name="module_iam_oidc_gha_incubator"></a> [iam\_oidc\_gha\_incubator](#module\_iam\_oidc\_gha\_incubator) | ./modules/aws-gha-oidc-providers | n/a |
 | <a name="module_iam_read_only_group"></a> [iam\_read\_only\_group](#module\_iam\_read\_only\_group) | ./modules/aws-groups | n/a |
+| <a name="module_iam_user_Benettonkkb"></a> [iam\_user\_Benettonkkb](#module\_iam\_user\_Benettonkkb) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_Ganeshswaminathan1912"></a> [iam\_user\_Ganeshswaminathan1912](#module\_iam\_user\_Ganeshswaminathan1912) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_Sbairamian"></a> [iam\_user\_Sbairamian](#module\_iam\_user\_Sbairamian) | ./modules/aws-users | n/a |
 | <a name="module_iam_user_ale210"></a> [iam\_user\_ale210](#module\_iam\_user\_ale210) | ./modules/aws-users | n/a |
