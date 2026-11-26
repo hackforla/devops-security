@@ -103,3 +103,14 @@ module "iam_user_trillium" {
   }
   user_groups = ["ops-leads"]
 }
+
+module "iam_user_Benettonkkb" {
+  source = "./modules/aws-users"
+
+  user_name = "benettonkkb"
+  user_tags = {
+    "Project"      = "devops-security"
+    "Access Level" = "1"
+  }
+  user_groups = ["read-only-group"]
+}
